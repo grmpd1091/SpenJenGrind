@@ -83,4 +83,42 @@
     });
   });
 
+  /* ── Animated stat counters ── */
+  var statNums = document.querySelectorAll('.stat-num[data-target]');
+  if (statNums.length) {
+    var counterIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var target = parseInt(el.getAttribute('data-target'), 10);
+        var suffix = el.getAttribute('data-suffix') || '';
+        var duration = 1400;
+        var startTime = null;
+        function tick(now) {
+          if (!startTime) startTime = now;
+          var elapsed = now - startTime;
+          var progress = Math.min(elapsed / duration, 1);
+          var ease = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(ease * target) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        counterIO.unobserve(el);
+      });
+    }, { threshold: 0.6 });
+    statNums.forEach(function (el) { counterIO.observe(el); });
+  }
+
+  /* ── Floating Book CTA ── */
+  var floatCta = document.querySelector('.float-cta');
+  if (floatCta) {
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 420) {
+        floatCta.classList.add('show');
+      } else {
+        floatCta.classList.remove('show');
+      }
+    }, { passive: true });
+  }
+
 })();

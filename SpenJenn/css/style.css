@@ -1400,3 +1400,122 @@ h1, h2, h3, h4, h5 {
   .accolades-grid { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   PREMIUM UPGRADES
+   ============================================================ */
+
+/* Film Grain overlay on hero sections */
+.hero::after,
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.045;
+  pointer-events: none;
+  z-index: 5;
+  mix-blend-mode: overlay;
+}
+
+/* Scrolling Marquee Ticker */
+.ticker {
+  background: var(--gold);
+  overflow: hidden;
+  padding: 11px 0;
+  border-top: 1px solid rgba(0,0,0,0.12);
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+.ticker__inner {
+  display: flex;
+  white-space: nowrap;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+.ticker__inner:hover { animation-play-state: paused; }
+.ticker__text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.24em;
+  color: var(--black);
+  display: inline-block;
+  padding-right: 72px;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Floating Book CTA */
+.float-cta {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 800;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+.float-cta.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.float-cta a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--gold);
+  color: var(--black);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.14em;
+  padding: 15px 28px;
+  box-shadow: 0 8px 36px rgba(201,168,76,0.42);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.float-cta a:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 44px rgba(201,168,76,0.52);
+}
+
+/* Timeline multi-image — taller */
+.tl-media--multi img { height: 250px; }
+
+/* Wake Forest trio container needs dark bg for blend */
+.tl-media--trio { background: var(--dark); }
+
+/* Roster item left border on hover */
+.roster-item {
+  border-left: 2px solid transparent;
+}
+.roster-item:hover { border-left-color: var(--gold); }
+
+/* Price cards lift on hover */
+.price-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+/* Skill cards bottom bar reveal */
+.skill-card { position: relative; overflow: hidden; }
+.skill-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--gold);
+  transition: width 0.32s ease;
+}
+.skill-card:hover::after { width: 100%; }
+
+/* Accolades lift */
+.acc-item { transition: background 0.2s, transform 0.2s; }
+.acc-item:hover { transform: translateY(-3px); }
+
+@media (max-width: 768px) {
+  .float-cta { bottom: 16px; right: 16px; }
+  .float-cta a { padding: 13px 22px; font-size: 15px; }
+}

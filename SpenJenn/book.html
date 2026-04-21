@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
 
@@ -61,7 +62,9 @@
         <p>Tell Spencer what you're working on — he'll get back to you directly.</p>
       </div>
 
-      <form action="mailto:spenjenn23@gmail.com" method="POST" enctype="text/plain" class="fade-in d1">
+      <!-- Sign up free at formspree.io, create a form, then replace YOUR_FORM_ID below -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="fade-in d1">
+        <input type="hidden" name="_subject" value="New training inquiry — SpenJenn Grind">
 
         <div class="form-group">
           <label for="name">Your Name</label>
@@ -96,7 +99,7 @@
         </button>
 
         <p style="font-size: 12px; color: var(--muted); margin-top: 10px; text-align: center; line-height: 1.7;">
-          This will open your email client pre-filled and addressed to Spencer.
+          Your message goes directly to Spencer. He'll reply personally.
         </p>
 
       </form>
