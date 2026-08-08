@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "SpenJenn",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3456", "--directory", "/Users/shoumurakami/Desktop/SpenJenn"],
+      "port": 3456
+    }
+  ]
+}
